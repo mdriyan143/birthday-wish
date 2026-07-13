@@ -5,8 +5,8 @@
    inside the [bracketed] placeholders marked "EDIT BELOW / ABOVE")
    ============================================================ */
 const CONFIG = {
-  recipientName: "Bubo",   // shown on the intro card and lock screen
-  passcode: "0101",        // digits typed on the lock screen keypad
+  recipientName: "Babe",   // shown on the intro card and lock screen
+  passcode: "2806",        // digits typed on the lock screen keypad
   anniversaryDate: "01 · 01 · 01",
   loadingMessage: "Loading your birthday surprise…"
 };

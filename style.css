@@ -654,6 +654,21 @@ html,body{
 /* ============================================================
    9. CELEBRATION SCREEN — fireworks canvas + banner
    ============================================================ */
+
+   .celebrate-photo{
+  width:100%; max-width:150px;
+  margin:0 auto 18px;
+  border-radius:14px;
+  overflow:visible;      /* was hidden — no need to crop since bg is transparent */
+  border:none;           /* optional: drop the border since it's not a photo frame anymore */
+}
+.celebrate-photo img{
+  width:100%;
+  height:auto;            /* was fixed height + object-fit:cover — this keeps proportions correct automatically */
+  display:block;
+}
+
+
 #screen-celebrate{
   background:linear-gradient(160deg, #0c0710, #170c19 55%, #05030a);
   transition:background 3s ease 2s;
