@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- 1. INTRO ENVELOPE SCREEN — title card, tap envelope to reveal the lock screen -->
+  <section id="screen-intro" class="screen active">
+    <div class="floaters">
+      <span style="top:10%;left:10%;">🎀</span>
+      <span class="beat" style="top:16%;right:9%;">💕</span>
+      <span style="bottom:22%;left:8%;">💌</span>
+      <span style="bottom:16%;right:12%;">🎁</span>
+    </div>
+    <div class="intro-card">
+      <div class="intro-heading" id="introHeading">Happy Birthday!<br>Babe</div>
+      <div class="intro-envelope" id="introEnvelope">
+        <svg viewBox="0 0 200 130" width="200" height="130">
+          <rect x="1" y="1" width="198" height="128" rx="8" fill="#a53042"/>
+          <path d="M6 10 L100 78 L194 10" stroke="#7c2233" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="100" cy="66" r="15" fill="#e0ab5f"/>
+          <path d="M94 66l4.5 4.5L107 61" stroke="#4a1620" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="intro-caption">tap to open your surprise</div>
+    </div>
+  </section>
+
+  <!-- 2. LOCK SCREEN -->
+  <section id="screen-lock" class="screen">
+    <div class="floaters">
+      <span style="top:10%;left:8%;">✨</span>
+      <span style="top:16%;right:10%;">👑</span>
+      <span style="bottom:20%;left:12%;">🎀</span>
+      <span style="bottom:26%;right:9%;">💌</span>
+      <span style="top:42%;left:4%;">🌸</span>
+    </div>
+
+    <div class="polaroid">
+      <div class="pic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2.6 4.5 6.3 4.5c2 0 3.6 1.2 5.7 3.4 2.1-2.2 3.7-3.4 5.7-3.4 3.7 0 5.9 3.6 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg>
+      </div>
+      <span class="cap" id="lockCaption">Happy Birthday!<br>Babe</span>
+    </div>
+
+    <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="#f0c98a" stroke-width="1.5">
+      <rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3"/>
+    </svg>
+    <div class="lock-title">Enter a passcode</div>
+
+    <div class="dots" id="dots">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="keypad" id="keypad">
+      <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+      <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+      <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+      <button class="ghost" data-k="clear">clear</button><button data-k="0">0</button><button class="ghost" data-k="back">⌫</button>
+    </div>
+
+    <div class="lock-hint">hint: our anniversary date</div>
+  </section>
+
+  <!-- 3. LOADING SCREEN -->
+  <section id="screen-loading" class="screen">
+    <div class="floaters floaters-dark">
+      <span style="top:12%;left:10%;">⭐</span>
+      <span style="top:18%;right:12%;">🌷</span>
+      <span style="bottom:22%;left:14%;">🎈</span>
+      <span style="bottom:18%;right:10%;">💗</span>
+      <span style="top:46%;right:6%;">🦋</span>
+    </div>
+    <div class="greet">Hey gurl! 👋</div>
+    <div class="cake-emoji">🎂</div>
+    <div class="load-label" id="loadLabel">Loading your birthday surprise…</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </section>
+
+  <!-- 4. HERO SCREEN -->
+  <section id="screen-hero" class="screen">
+    <div class="hero-photo"></div>
+    <div class="floaters">
+      <span style="top:10%;left:9%;">🎀</span>
+      <span class="beat" style="top:14%;right:10%;">💕</span>
+      <span style="bottom:30%;left:6%;">🎁</span>
+    </div>
+    <div class="hero-overlay">
+      <div class="hero-date" id="heroDate">01 · 01 · 01</div>
+      <!-- ===== feel free to tweak this wording anytime ===== -->
+      <h1 class="hero-title">Happy Birthday Niha, My Love! 🎀🎉</h1>
+      <p class="hero-sub">Today the world gets to celebrate the girl who makes every one of my days brighter. I hope this little corner of the internet makes you smile as much as you make me smile every single day.</p>
+      <!-- ===== ===== -->
+      <button class="btn-primary" id="toEnvelope">You've got mail 💌</button>
+    </div>
+  </section>
+
+  <!-- 5. ENVELOPE / MAIL SCREEN -->
+  <section id="screen-envelope" class="screen">
+    <div class="floaters">
+      <span style="top:12%;left:10%;">💌</span>
+      <span style="top:18%;right:12%;">🎀</span>
+      <span style="bottom:20%;left:14%;">🎁</span>
+      <span class="beat" style="bottom:16%;right:10%;">💕</span>
+    </div>
+    <div class="envelope-label">You've got mail</div>
+
+    <div class="envelope" id="envelope">
+      <div class="env-letter-peek"></div>
+      <div class="env-back"></div>
+      <div class="env-flap"></div>
+      <div class="env-seal">💌</div>
+    </div>
+
+    <div class="envelope-hint" id="envelopeHint">tap the envelope to open it</div>
+  </section>
+
+  <!-- 6. LETTER SCREEN -->
+  <section id="screen-letter" class="screen">
+    <div class="floaters floaters-dark">
+      <span style="top:6%;left:6%;">💌</span>
+      <span class="beat" style="top:8%;right:8%;">💕</span>
+      <span style="bottom:8%;left:5%;">🎀</span>
+    </div>
+    <div class="letter-wrap">
+      <div class="letter-paper">
+        <!-- ===== feel free to tweak this wording anytime ===== -->
+        <div class="letter-heading">My Love,</div>
+        <div class="letter-body" id="letterBody">
+          <p>You are the best thing that has ever happened to me. Every laugh, every quiet moment, every little adventure with you — I hold onto all of it like treasure.</p>
+          <p>So today, of all days, I just want you to know how loved you are. Happy birthday, beautiful. Here's to more years of us, more memories, and more reasons to fall for you all over again.</p>
+        </div>
+        <div class="letter-sign">Forever yours 💛</div>
+        <!-- ===== ===== -->
+      </div>
+
+      <!-- ===== Real photos: replace each src below with your own image path ===== -->
+      <div class="photo-column">
+        <div class="photo-slot">
+          <img src="photo1.jpg" alt="Photo of us" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5.5-5.5L4 21"/></svg>
+            <span>photo1.jpg</span>
+          </div>
+        </div>
+        <div class="photo-slot">
+          <img src="photo2.jpg" alt="Photo of us" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5.5-5.5L4 21"/></svg>
+            <span>photo2.jpg</span>
+          </div>
+        </div>
+        <div class="photo-slot">
+          <img src="photo3.jpg" alt="Photo of us" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5.5-5.5L4 21"/></svg>
+            <span>photo3.jpg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-primary" id="toCake">Continue</button>
+  </section>
+
+  <!-- 7. CAKE SCREEN -->
+  <section id="screen-cake" class="screen">
+    <div class="wish-label">🎀 Make a Wish 🎀</div>
+
+    <div class="cake-scene" id="cakeScene">
+      <div class="candle-rig" id="cakeRig">
+        <div class="flame" id="flame"></div>
+        <div class="candle-stick"></div>
+      </div>
+      <div class="cream-pour" id="creamPour">
+        <div class="cream-drip d1"></div>
+        <div class="cream-drip d2"></div>
+        <div class="cream-drip d3"></div>
+        <div class="cream-drip d4"></div>
+      </div>
+      <div class="frosting-top"></div>
+      <div class="sprinkle s1"></div>
+      <div class="sprinkle s2"></div>
+      <div class="sprinkle s3"></div>
+      <div class="sprinkle s4"></div>
+      <div class="sprinkle s5"></div>
+      <div class="sprinkle s6"></div>
+      <div class="layer layer-top"></div>
+      <div class="layer layer-bottom"></div>
+      <div class="plate"></div>
+    </div>
+
+    <div class="cake-tip">tap the candle to blow it out</div>
+  </section>
+
+  <!-- 8. COUNTDOWN SCREEN — pink/creamy fades to night sky -->
+  <section id="screen-countdown" class="screen">
+    <div class="countdown-stars" id="countdownStars">
+      <span style="top:14%;left:18%;"></span>
+      <span style="top:22%;left:72%;"></span>
+      <span style="top:34%;left:44%;"></span>
+      <span style="top:18%;left:52%;"></span>
+      <span style="top:46%;left:20%;"></span>
+      <span style="top:40%;left:80%;"></span>
+      <span style="top:60%;left:30%;"></span>
+      <span style="top:64%;left:68%;"></span>
+      <span style="top:12%;left:88%;"></span>
+      <span style="top:52%;left:60%;"></span>
+    </div>
+    <div class="countdown-number" id="countdownNumber">3</div>
+  </section>
+
+  <!-- 9. CELEBRATION SCREEN -->
+  <section id="screen-celebrate" class="screen">
+    <canvas id="fx-canvas"></canvas>
+    <div class="celebrate-floaters">
+      <span style="left:12%;">🎀</span>
+      <span style="left:30%;">💌</span>
+      <span style="left:50%;">💕</span>
+      <span style="left:68%;">🎁</span>
+      <span style="left:85%;">💕</span>
+    </div>
+    <div class="celebrate-content">
+      <div class="celebrate-badge">Happy Birthday to You</div>
+      <div class="celebrate-title">🎉 🎂 🎉</div>
+      <!-- ===== feel free to tweak this wording anytime ===== -->
+      <p class="celebrate-sub">Here's to another trip around the sun with the most incredible girl I know. I love you more than words on a screen could ever say.</p>
+      <!-- ===== ===== -->
+      <button class="btn-ghost" id="restart">See again</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>
