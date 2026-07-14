@@ -7,7 +7,8 @@
 const CONFIG = {
   recipientName: "Babe",   // shown on the intro card and lock screen
   passcode: "2806",        // digits typed on the lock screen keypad
-  anniversaryDate: "01 · 01 · 01",
+  anniversaryDate: "06 · 08 · 2026",     // shown as TEXT on the hero screen
+  anniversaryCheckDate: "2024-06-28",  // the date that must be entered on the new date screen — format: YYYY-MM-DD
   loadingMessage: "Loading your birthday surprise…"
 };
 
@@ -27,10 +28,31 @@ introEnvelope.addEventListener('click', () => {
   if(introOpened) return;
   introOpened = true;
   introEnvelope.classList.add('opening');
-  setTimeout(() => showScreen('screen-lock'), 450);
+  setTimeout(() => showScreen('screen-date'), 450); // now goes to the date screen first
 });
 
-/* ---------------- 1. Lock screen ---------------- */
+/* ---------------- 1.5 Anniversary date screen ---------------- */
+const dateCard = document.querySelector('.date-card');
+const dateInput = document.getElementById('dateInput');
+const dateError = document.getElementById('dateError');
+
+function checkDate(){
+  if(dateInput.value === CONFIG.anniversaryCheckDate){
+    dateError.classList.remove('show');
+    showScreen('screen-lock');
+  } else {
+    dateError.classList.add('show');
+    dateCard.classList.add('shake');
+    setTimeout(() => dateCard.classList.remove('shake'), 400);
+  }
+}
+
+document.getElementById('dateSubmit').addEventListener('click', checkDate);
+dateInput.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter') checkDate();
+});
+
+/* ---------------- 2. Lock screen ---------------- */
 const dotsEl = document.getElementById('dots');
 const dots = dotsEl.querySelectorAll('span');
 let entered = "";
@@ -69,7 +91,7 @@ function checkPasscode(){
   }
 }
 
-/* ---------------- 2. Loading screen ---------------- */
+/* ---------------- 3. Loading screen ---------------- */
 function startLoading(){
   document.getElementById('loadLabel').textContent = CONFIG.loadingMessage;
   showScreen('screen-loading');
@@ -90,6 +112,8 @@ document.getElementById('toCake').addEventListener('click', () => {
 document.getElementById('restart').addEventListener('click', () => {
   introOpened = false;
   introEnvelope.classList.remove('opening');
+  dateInput.value = "";
+  dateError.classList.remove('show');
   entered = ""; renderDots();
   envelopeOpened = false;
   envelope.classList.remove('open');
