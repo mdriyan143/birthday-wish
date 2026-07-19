@@ -286,3 +286,158 @@ document.addEventListener('pointerdown', (e) => {
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 900);
 });
+
+
+
+
+// /* ===== Floating Heart Cursor Effect ===== */
+
+// /* ---- Config: tweak these to customize ---- */
+// var colours = ['#ff3366', '#ff6699', '#ff33cc', '#ff99cc', '#ff66b2', '#ff0066']; // heart colors
+// var minisize = 16;    // starting heart size (px)
+// var maxisize = 28;    // max size before it "pops"
+// var hearts = 66;      // total heart elements in the pool
+// var over_or_under = "over"; // "over" = hearts render above page content
+
+// /* ---- Internal state (don't need to touch these) ---- */
+// var x = ox = 400;
+// var y = oy = 300;
+// var swide = 800;
+// var shigh = 600;
+// var sleft = sdown = 0;
+// var herz = [];
+// var herzx = [];
+// var herzy = [];
+// var herzs = [];
+// var kiss = false;
+
+// // Runs mwah() after page load without overwriting other window.onload handlers
+// if (typeof('addRVLoadEvent') != 'function') function addRVLoadEvent(funky) {
+//   var oldonload = window.onload;
+//   if (typeof(oldonload) != 'function') {
+//     window.onload = funky;
+//   } else {
+//     window.onload = function() {
+//       if (oldonload) oldonload();
+//       funky();
+//     }
+//   }
+// }
+// addRVLoadEvent(mwah);
+
+// // Creates the pool of heart elements (hidden until used)
+// function mwah() {
+//   if (document.getElementById) {
+//     var i, heart;
+//     for (i = 0; i < hearts; i++) {
+//       heart = createDiv("auto", "auto");
+//       heart.style.visibility = "hidden";
+//       heart.style.zIndex = (over_or_under == "over") ? "1001" : "0";
+//       heart.style.color = colours[i % colours.length];
+//       heart.style.pointerEvents = "none"; // don't block clicks
+//       heart.style.opacity = 0.75;
+//       heart.appendChild(document.createTextNode(String.fromCharCode(9829))); // ♥
+//       document.body.appendChild(heart);
+//       herz[i] = heart;
+//       herzy[i] = false;
+//     }
+//     set_scroll();
+//     set_width();
+//     herzle();
+//   }
+// }
+
+// // Main loop: spawns a heart on mouse move, animates all active hearts
+// function herzle() {
+//   var c;
+//   if (Math.abs(x - ox) > 1 || Math.abs(y - oy) > 1) {
+//     ox = x;
+//     oy = y;
+//     for (c = 0; c < hearts; c++) if (herzy[c] === false) {
+//       herz[c].firstChild.nodeValue = String.fromCharCode(9829);
+//       herz[c].style.left = (herzx[c] = x - minisize / 2) + "px";
+//       herz[c].style.top = (herzy[c] = y - minisize) + "px";
+//       herz[c].style.fontSize = minisize + "px";
+//       herz[c].style.fontWeight = 'normal';
+//       herz[c].style.visibility = 'visible';
+//       herzs[c] = minisize;
+//       break;
+//     }
+//   }
+//   for (c = 0; c < hearts; c++) if (herzy[c] !== false) blow_me_a_kiss(c);
+//   setTimeout(herzle, 40);
+// }
+
+// // Holding the mouse down keeps spawning hearts
+// document.onmousedown = pucker;
+// document.onmouseup = function() { clearTimeout(kiss); };
+// function pucker() {
+//   ox = -1;
+//   oy = -1;
+//   kiss = setTimeout(pucker, 100);
+// }
+
+// // Moves one heart upward, growing it, until it floats off-screen or pops
+// function blow_me_a_kiss(i) {
+//   herzy[i] -= herzs[i] / minisize + i % 2;
+//   herzx[i] += (i % 5 - 2) / 5;
+
+//   if (herzy[i] < sdown - herzs[i] || herzx[i] < sleft - herzs[i] || herzx[i] > sleft + swide - herzs[i]) {
+//     herz[i].style.visibility = "hidden";
+//     herzy[i] = false;
+//   } else if (herzs[i] > minisize + 2 && Math.random() < .5 / hearts) {
+//     break_my_heart(i);
+//   } else {
+//     if (Math.random() < maxisize / herzy[i] && herzs[i] < maxisize) {
+//       herz[i].style.fontSize = (++herzs[i]) + "px";
+//     }
+//     herz[i].style.top = herzy[i] + "px";
+//     herz[i].style.left = herzx[i] + "px";
+//   }
+// }
+
+// // Turns the heart into a "broken heart" before hiding it
+// function break_my_heart(i) {
+//   herz[i].firstChild.nodeValue = String.fromCharCode(9676); // ○
+//   herz[i].style.fontWeight = 'bold';
+//   herzy[i] = false;
+//   setTimeout(() => herz[i].style.visibility = "hidden", 400);
+// }
+
+// // Tracks mouse position
+// document.onmousemove = mouse;
+// function mouse(e) {
+//   if (e) {
+//     y = e.pageY;
+//     x = e.pageX;
+//   } else {
+//     set_scroll();
+//     y = event.y + sdown;
+//     x = event.x + sleft;
+//   }
+// }
+
+// // Keeps screen size updated on resize
+// window.onresize = set_width;
+// function set_width() {
+//   swide = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+//   shigh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+// }
+
+// // Keeps scroll position updated
+// window.onscroll = set_scroll;
+// function set_scroll() {
+//   sdown = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+//   sleft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+// }
+
+// // Helper: creates a transparent, absolutely-positioned div for each heart
+// function createDiv(height, width) {
+//   var div = document.createElement("div");
+//   div.style.position = "absolute";
+//   div.style.height = height;
+//   div.style.width = width;
+//   div.style.overflow = "hidden";
+//   div.style.backgroundColor = "transparent";
+//   return div;
+// }
