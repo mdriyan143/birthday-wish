@@ -899,6 +899,16 @@ html,body{
    9. CELEBRATION SCREEN — fireworks canvas + banner
    ============================================================ */
 
+.celebrate-typewriter {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-top: 20px;
+  min-height: 60px;
+  max-width: 90%;        /* stops it from touching screen edges */
+  margin-left: auto;      /* centers the block horizontally */
+  margin-right: auto;
+  text-align: center;     /* keeps wrapped lines looking neat */
+}
    .celebrate-photo{
   width:100%; max-width:150px;
   margin:0 auto 18px;
