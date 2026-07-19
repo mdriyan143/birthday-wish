@@ -926,7 +926,14 @@ html,body{
 #screen-celebrate{
   background:linear-gradient(160deg, #0c0710, #170c19 55%, #05030a);
   transition:background 3s ease 2s;
+    overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  justify-content:flex-start;
+  padding-top:48px;
+  padding-bottom:48px;
 }
+
+
 #screen-celebrate.daylight{
   background:linear-gradient(160deg, #fbe3df, #f7cfd8 60%, #f6c9d2);
 }
