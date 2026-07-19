@@ -258,7 +258,9 @@ function launchFireworks(){
 
   let bursts = 0;
   const burstTimer = setInterval(() => {
-    if(bursts >= 6){ clearInterval(burstTimer); return; }
+    if(bursts >= 6){ clearInterval(burstTimer); 
+      setTimeout(() => { fxRunning = false;}, 2500);
+      return; }
     const x = canvas.width * (0.25 + Math.random()*0.5);
     const y = canvas.height * (0.25 + Math.random()*0.35);
     spawnBurst(x, y, fxColors[Math.floor(Math.random()*fxColors.length)]);
