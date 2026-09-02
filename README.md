@@ -2,11 +2,10 @@
 
 A multi-screen, animated birthday surprise website built with vanilla HTML, CSS, and JavaScript. The site takes the visitor through a story-like journey — from a locked envelope intro to a personal letter, a candle-blowing cake, and a final celebration screen — instead of showing everything on one page.
 
-🔗 **Live Demo:** _add your GitHub Pages / hosting link here_
+🔗 **Live Demo:** https://mdriyan143.github.io/birthday-wish
 📦 **Repository:** https://github.com/mdriyan143/birthday-wish
 
-<!-- 📸 Add a screenshot or a short screen-recording GIF of the site here, e.g.: -->
-<!-- ![Preview](./image/preview.png) -->
+🔐 **Demo access:** <br>Date — 28 June 2024 <br> Passcode — 2806
 
 ## ✨ Features
 
@@ -57,5 +56,5 @@ birthday-wish/
 
 ## 🔗 Links
 
-- Live Demo: _add link once deployed_
+- Live Demo: https://mdriyan143.github.io/birthday-wish
 - Repository: https://github.com/mdriyan143/birthday-wish
