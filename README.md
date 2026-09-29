@@ -57,4 +57,4 @@ birthday-wish/
 ## 🔗 Links
 
 - Live Demo: https://mdriyan143.github.io/birthday-wish
-- Repository: https://github.com/mdriyan143/birthday-wish
+
