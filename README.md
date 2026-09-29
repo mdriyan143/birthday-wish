@@ -54,5 +54,11 @@ birthday-wish/
 └── image/          # Photos and GIFs used across the letter/celebration screens
 ```
 
+## 👨‍💻 Author
 
+Developed by **Md Riyan Biswas**
+
+---
+
+⭐ If you find this project useful, consider giving the repository a star!
 
