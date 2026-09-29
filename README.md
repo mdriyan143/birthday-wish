@@ -54,7 +54,5 @@ birthday-wish/
 └── image/          # Photos and GIFs used across the letter/celebration screens
 ```
 
-## 🔗 Links
 
-- Live Demo: https://mdriyan143.github.io/birthday-wish
 
